@@ -63,10 +63,20 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        /* salvando a imagem : php artisan storage:link - associação entre pasta privada de imagens e a pasta public para que o usuário possa acessar. Criar uma pasta profile dentro de storage/app/public */
+        $nomeArquivo = $data['img']->getClientOriginalName();
+        $date = date('y-m-a');
+        $nomeArquivo = $date.$nomeArquivo;
+        $caminhoImg = "storage/profile/$nomeArquivo"; /* não precisa falar app nem public */
+
+        $resultado = $data['img']->storeAs('public/profile', $nomeArquivo); /* onde vc quer salvar e o nome do arquivo. Aqui o caminho precisa de public/profile, diferentemente de $caminhoImg */
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'img_profile' => $caminhoImg, /* aqui coloca o caminho da imagem */
+            'active' => 1
         ]);
     }
 }
