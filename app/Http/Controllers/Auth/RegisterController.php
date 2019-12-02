@@ -63,7 +63,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        /* salvando a imagem : php artisan storage:link - associação entre pasta privada de imagens e a pasta public para que o usuário possa acessar. Criar uma pasta profile dentro de storage/app/public */
+        /* salvando a imagem: php artisan storage:link - associação entre pasta privada de imagens e a pasta public para que o usuário possa acessar. Criar uma pasta profile dentro de storage/app/public */
         $nomeArquivo = $data['img']->getClientOriginalName();
         $date = date('y-m-a');
         $nomeArquivo = $date.$nomeArquivo;
