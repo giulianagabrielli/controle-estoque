@@ -1,4 +1,4 @@
-<?php // para criar um arquivo controller: php artisan make:controller NomeController
+<?php // para criar um arquivo controller: php artisan make:controller NomeController. Para criar um middleware php artisan make:middleware NomeMiddleware
 
 namespace App\Http\Controllers;
 
