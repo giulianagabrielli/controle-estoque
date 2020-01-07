@@ -17,20 +17,19 @@ Route::get('/', function () {
 
 Auth::routes(); // padrão o laravel coloca as rotas login e register
 
-Route::get('/login/google', 'Auth\LoginController@redirectToGoogle'); // como está dentro da pasta  Auth, precisa dizer usando \. 
-Route::get('/login/google/callback', 'Auth\LoginController@receiveDataGoogle'); // o google   vai devolver os  dados nessa rota
+// rotas para Api Google
+Route::get('/login/google', 'Auth\LoginController@redirectToGoogle'); // como está dentro da pasta Auth, precisa dizer o caminho usando \. 
+Route::get('/login/google/callback', 'Auth\LoginController@receiveDataGoogle'); // o google vai devolver os dados nessa rota
 
-Route::get('/home', 'HomeController@index')->name('home'); // name é como um alias
+// rota home
+Route::get('/home', 'HomeController@index')->name('home'); 
 
-
-Route::get('/produtos/cadastrar', 'ProductController@viewForm')->middleware('checkuser'); // criar um produto dentro do controller. Seria possível criar uma única função create, se a informação for por get, visualiza, e se for por post, cadastra. ->middleware para dizer que essa rota vai usar a  proteção  do middleware CheckUser
+// crud produtos
+Route::get('/produtos/cadastrar', 'ProductController@viewForm')->middleware('checkuser'); //criar um produto dentro do controller. Seria possível criar uma única função create, se a informação for por get, visualiza, e se for por post, cadastra. ->middleware para dizer que essa rota vai usar a  proteção  do middleware CheckUser
 Route::post('/produtos/cadastrar', 'ProductController@create'); // rota que o usuário não vai ver porque são as informações do formulário enviadas por post
-
 Route::get('/produtos/atualizar/{id?}', 'ProductController@viewFormUpdate')->middleware('checkuser'); // rotas parametrizadas atualizar/{id}, informações fixas e informações dinâmicas {}
 Route::post('/produtos/atualizar', 'ProductController@update')->middleware('checkuser');
-
 Route::get('/produtos', 'ProductController@viewAllProducts')->middleware('checkuser');
-
 Route::get('/produtos/deletar/{id?}', 'ProductController@delete')->middleware('checkuser');
 
 

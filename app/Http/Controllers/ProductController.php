@@ -1,17 +1,17 @@
-<?php // para criar um arquivo controller: php artisan make:controller NomeController. Para criar um middleware php artisan make:middleware NomeMiddleware
+<?php
 
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User; // importanto a classe User
-use App\Product; // importando a classe Product
-use Auth; // importando a classe Auth. Ou Auth()->user()->id se não importar.
+use App\User; 
+use App\Product; 
+use Auth; 
 
 class ProductController extends Controller
 {
     public function create(Request $request) { // parâmetro/objeto $request dentro da classe Request. Esse parâmetro é nomeado por mim, ele pega todas as informações get ou post.
 
-        // OPÇÃO de criação de produto: if get ou if post
+        // OPÇÃO de criação de produto no mesmo método create: if get ou if post
         // if($request->isMethod('GET')){ 
         //     return view('formulario');
         // } else {
@@ -20,13 +20,14 @@ class ProductController extends Controller
 
         // criando objeto
         $newProduct = new Product();  
-        $newProduct->name = $request->nameProduct; // name da tabela Products é igual ao nameProduct dor for enviado via request (pega cada name e transforma em atributo) 
-        $newProduct->description = $request->descriptionProduct; // o primeiro é da tabela e o segundo é do formulário
+        $newProduct->name = $request->nameProduct; // name vem da tabela Products e é igual ao nameProduct do que foi enviado via post no formulário (pega cada name e transforma em atributo) 
+        $newProduct->description = $request->descriptionProduct; 
         $newProduct->quantity = $request->quantityProduct; 
         $newProduct->price = $request->priceProduct;
-        $newProduct->user_id = Auth::user()->id; // classe global com método user que retorna as informações do usuário logado no momento.
+        $newProduct->user_id = Auth::user()->id; // classe global com método user que retorna as informações do usuário logado no momento. Ou Auth()->user()->id se não importar a classe Auth.
         
-        $result = $newProduct->save(); // salvando objeto. Traz um boleano. Não precisa fazer a query, já é automático do Laravel, só precisa criar o objeto.
+        // salvando objeto
+        $result = $newProduct->save(); // Traz um boleano. Não precisa fazer a query no laravel.
 
         // OPÇÃO de validação
         // if($result){
@@ -40,7 +41,7 @@ class ProductController extends Controller
     }
 
     public function viewForm(Request $request){ // poderia ser index(). Função primária que é ixibir formulário. Traz uma view. Na verdade, não precisa usar o request pq não está pegando nenhuma informação, nem get nem post
-        return view('products.formRegister'); // a barra é substituída por um ponto e o arquivo fica só form, sem blade.
+        return view('products.formRegister'); // a barra é substituída por um ponto e o arquivo fica sem .blade.
     }
 
     public function viewFormUpdate(Request $request, $id=0) { //$id que vem da url {id}

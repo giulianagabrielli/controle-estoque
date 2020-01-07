@@ -42,7 +42,7 @@ class LoginController extends Controller
     }
 
     public function redirectToGoogle(){
-        return Socialite::driver('google')->redirect();
+        return Socialite::driver('google')->redirect(); // tem que instalar o Socialite 
     }
 
     public function receiveDataGoogle(){

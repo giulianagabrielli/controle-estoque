@@ -1,6 +1,6 @@
 @extends('layouts.app')  <!-- é o template de app.blade.php -->
 
-@section('content') <!-- essa section vai substituir o @yeld do app.blade.php -->
+@section('content') <!-- essa section vai substituir o @yield do app.blade.php -->
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
