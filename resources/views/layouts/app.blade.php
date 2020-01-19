@@ -41,9 +41,9 @@
                         <!-- Authentication Links -->
                         @guest <!-- se não está logado, apenas guest -->
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a> <!-- route('login') está chamando pelo name da rota -->
                             </li>
-                            @if (Route::has('register')) <!-- precisa disso?? -->
+                            @if (Route::has('register')) <!-- precisa para desenvolvimento, se no caso ainda não foi criada a view register -->
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
@@ -53,7 +53,7 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
+                                </a> <!-- pega o nome do usuário -->
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"

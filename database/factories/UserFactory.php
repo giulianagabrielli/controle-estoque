@@ -16,7 +16,7 @@ use Illuminate\Support\Str;
 |
 */
 
-$factory->define(User::class, function (Faker $faker) {
+$factory->define(User::class, function (Faker $faker) { // biblioteca de usuários fake para inserir no banco. Em seeder, vc diz como que vai ser criada essa fábrica
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
